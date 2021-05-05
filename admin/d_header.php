@@ -16,6 +16,11 @@
     <link href="lib/Ionicons/css/ionicons.css" rel="stylesheet">
     <link href="lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
     <link href="lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+    <link href="lib/highlightjs/github.css" rel="stylesheet">
+    <link href="lib/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="lib/select2/css/select2.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="css/starlight.css">

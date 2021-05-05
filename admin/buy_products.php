@@ -13,7 +13,7 @@
   <!-- ########## START: MAIN PANEL ########## -->
   <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
-      <a class="breadcrumb-item" href="index.php">Online Cash Counter</a>
+      <a class="breadcrumb-item">Online Cash Counter</a>
       <span class="breadcrumb-item active">Insert Products</span>
     </nav>
 

@@ -22,6 +22,7 @@
         <ul class="sl-menu-sub nav flex-column">
           
           <li class="nav-item"><a href="buy_products.php" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="buy_products_list.php" class="nav-link">Product's List</a></li>
           
         </ul>
 

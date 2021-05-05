@@ -2,7 +2,7 @@
 	
 	require 'db_config.php';
 
-	
+	/// Code for product insert
 	if(isset($_POST['btn-ProductInsert']))
 	{
 	
@@ -63,6 +63,8 @@
 	}
 
 
+
+	////
 
 
 
