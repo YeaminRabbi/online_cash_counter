@@ -18,4 +18,16 @@
 		return $row;
 	}
 
+
+
+	 function fetch_all_data_usingDB($db,$sql){
+			
+			$result = mysqli_query($db,$sql);
+		    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		    mysqli_free_result($result);
+		    return $row;
+	}
+
+
+
 ?>

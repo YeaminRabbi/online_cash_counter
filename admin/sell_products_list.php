@@ -22,48 +22,20 @@
       <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Product Details</h6>
           
-          <?php
 
-            if(isset($_GET['update']))
-            {
-          ?>
-
-           <div class="alert alert-success alert-dismissible" style="height: 50px;">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-             Product Updated Successfully!
-          </div>
-          <?php 
-            }
-          ?>
-
-
-          <?php
-
-            if(isset($_GET['delete']))
-            {
-          ?>
-
-           <div class="alert alert-danger alert-dismissible" style="height: 50px;">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-             Product Deleted Successfully!
-          </div>
-          <?php 
-            }
-          ?>
-         
           <div class="table-wrapper">
             <table id="myTable" class="table display responsive nowrap">
               <thead>
                 <tr>
                   <th class="wd-10p">SL</th>
+                  <th class="wd-10p">Product ID</th>
                   <th class="wd-10p">Product name</th>
                   <th class="wd-15p">Image</th>
-                  <th class="wd-10p">Cost </th>
                   <th class="wd-10p">Selling </th>
-                  <th class="wd-10p">Quantity</th>
-                  <th class="wd-15p">Company Name</th>
+                  <th class="wd-10p">Available Qty</th>
                   <th class="wd-15p">Unit Type</th>
-                  <th class="wd-25p">Action</th>
+                  <th class="wd-20p">Choose Qty</th>
+                  <th class="wd-10p">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,17 +46,19 @@
                 ?>
                     <tr>
                       <td><?php echo $key+1; ?></td>
+                      <td><?php echo $data['id']; ?></td>
                       <td><?php echo $data['product_name']; ?></td>
                       <td><img src="<?php echo $data['product_image']; ?>" width=50></td>
-                      <td>BDT. <?php echo $data['cost_price']; ?></td>
                       <td>BDT. <?php echo $data['selling_price']; ?></td>
                       <td><?php echo $data['quantity']; ?></td>
-                      <td><?php echo $data['company_name']; ?></td>
+                    
+
                       <td><?php echo $data['unit_type']; ?></td>
+                      <td><input type="number" name="choose_quantity" min="1" max="<?= $data['quantity']; ?>" style="width: 100px;"></td>
                       <td>
 
-                        <a href="edit_products.php?edit_product_id=<?= $data['id']  ?>" class="btn btn-primary">Edit</a>
-                        <a href="action.php?delete_product_id=<?=  $data['id'] ?>" class="btn btn-danger">Delete</a>
+                        <a href="" class="btn btn-success">Add to Cart</a>
+                        
 
                       </td>
                     </tr>
