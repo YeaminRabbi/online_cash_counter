@@ -1,6 +1,7 @@
 <?php
 	
 	require 'db_config.php';
+	require 'calculation.php';
 
 	/// Code for product insert
 	if(isset($_POST['btn-ProductInsert']))
@@ -132,6 +133,97 @@
 		header("Location: buy_products_list.php?update=success");
 
 	}
+
+
+
+	///code for adding products to CART with quantity
+	if(isset($_POST['btn-addToCart']))
+	{
+		$quantity=$_POST['choose_quantity'];
+
+		$product_name=$_POST['product_name'];
+		$product_selling_price=$_POST['product_selling_price'];
+		$product_cost_price=$_POST['product_cost_price'];
+		$product_image=$_POST['product_image'];
+		$product_code=$_POST['product_id'];
+
+
+		$cost_total_price = (int)$quantity * (int)$product_cost_price;
+		$selling_total_price = (int)$quantity * (int)$product_selling_price;
+
+		
+
+		//checking if product already exist in the CART or not
+		
+		$product_count=fetch_all_data_usingDB($db,"select COUNT(*) from cart where product_code = '$product_code'");
+
+		$count_value=$product_count['COUNT(*)'];
+
+		if($count_value>="1")
+		{
+			header("Location: sell_products_list.php?exist=true");
+			die();
+		}
+		else
+		{
+			$sql = "INSERT INTO cart (product_name,product_selling_price,product_cost_price,product_image,quantity,cost_total_price,selling_total_price,product_code) VALUES ('$product_name','$product_selling_price','$product_cost_price','$product_image','$quantity','$cost_total_price','$selling_total_price','$product_code')";
+
+			$db->query($sql);
+			header("Location: sell_products_list.php?msg=inserted");
+		}
+
+		
+	}
+
+
+
+
+	//Removing a single product from cart table
+	if(isset($_GET['cart_singleproduct_remove']))
+	{
+		$cart_id=$_GET['cart_singleproduct_remove'];
+
+		$sql = "DELETE FROM cart WHERE id='$cart_id';";
+
+		$db->query($sql);
+
+		header("Location: cart.php?singledelete=success");
+	}
+
+
+
+	//Removing a all products from cart table
+	if(isset($_GET['allproduct_delte']))
+	{
+		
+
+		$sql = "DELETE FROM cart;";
+
+		$db->query($sql);
+
+		header("Location: cart.php?alldelete=success");
+	}
+
+	
+	//code for ajax auto update in cart for product quantities
+	if(isset($_POST['qty'])){
+		$qty= $_POST['qty'];
+		$pid =$_POST['pid'];
+		$pprice= $_POST['pprice'];
+		$p2price=$_POST['p2price'];
+
+		$tprice = $qty*$pprice;
+		$t2price= $qty*$p2price;
+
+		$stmt = $db->prepare("update cart set quantity=?, selling_total_price=?, cost_total_price=? where id=?");
+
+		$stmt-> bind_param("issi", $qty,$tprice,$t2price,$pid);
+		$stmt-> execute();
+
+
+	}
+
+
 
 
 ?>

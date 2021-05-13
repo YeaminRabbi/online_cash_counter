@@ -35,6 +35,17 @@
 	        </div><!-- form-group -->
         
         <button type="submit" name="btn-login_admin" class="btn btn-info btn-block">Sign In</button>
+
+        <?php
+
+            if(isset($_GET['msg']))
+            {
+          ?>
+
+           <p style="color: red;font-weight: 700;">Wrong Credentials!</p>
+          <?php 
+            }
+          ?>
         </form>
         
       </div><!-- login-wrapper -->

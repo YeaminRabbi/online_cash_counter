@@ -21,7 +21,35 @@
     <div class="sl-pagebody"><!-- MAIN CONTENT -->
       <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Product Details</h6>
-          
+            
+            <?php
+
+            if(isset($_GET['msg']))
+            {
+          ?>
+
+           <div class="alert alert-success alert-dismissible" style="height: 50px;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+             Product Added to Cart!
+          </div>
+          <?php 
+            }
+          ?>
+
+
+          <?php
+
+            if(isset($_GET['exist']))
+            {
+          ?>
+
+           <div class="alert alert-danger alert-dismissible" style="height: 50px;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+             Product Already Added to Cart!
+          </div>
+          <?php 
+            }
+          ?>
 
           <div class="table-wrapper">
             <table id="myTable" class="table display responsive nowrap">
@@ -43,25 +71,41 @@
                 <?php
 
                     foreach ($product_list as $key => $data) {
-                ?>
-                    <tr>
-                      <td><?php echo $key+1; ?></td>
-                      <td><?php echo $data['id']; ?></td>
-                      <td><?php echo $data['product_name']; ?></td>
-                      <td><img src="<?php echo $data['product_image']; ?>" width=50></td>
-                      <td>BDT. <?php echo $data['selling_price']; ?></td>
-                      <td><?php echo $data['quantity']; ?></td>
+                ?>  
+
+                  
                     
+                  
+                    <tr>
+                      <form action="action.php" method="POST">
+                        <td><?php echo $key+1; ?></td>
+                        <td><?php echo $data['id']; ?></td>
+                        <td><?php echo $data['product_name']; ?></td>
+                        <td><img src="<?php echo $data['product_image']; ?>" width=50></td>
+                        <td>BDT. <?php echo $data['selling_price']; ?></td>
+                        <td><?php echo $data['quantity']; ?></td>
+                      
 
-                      <td><?php echo $data['unit_type']; ?></td>
-                      <td><input type="number" name="choose_quantity" min="1" max="<?= $data['quantity']; ?>" style="width: 100px;"></td>
-                      <td>
+                        <td><?php echo $data['unit_type']; ?></td>
+                        <td><input type="number" name="choose_quantity" value="1" min="1" max="<?= $data['quantity']; ?>" style="width: 50px;"></td>
+                        <td>
+                          <button class="btn btn-success" type="submit" name="btn-addToCart">Add to Cart</button>
+                        </td>
 
-                        <a href="" class="btn btn-success">Add to Cart</a>
-                        
 
-                      </td>
+
+                        <input type="hidden" name="product_name" value="<?= $data['product_name']  ?>">
+                        <input type="hidden" name="product_selling_price" value="<?= $data['selling_price']  ?>">
+                        <input type="hidden" name="product_cost_price" value="<?= $data['cost_price']  ?>">
+                        <input type="hidden" name="product_image" value="<?= $data['product_image']  ?>">
+                        <input type="hidden" name="product_id" value="<?= $data['id']  ?>">
+
+
+
+                      </form>
                     </tr>
+
+                 
                 <?php
                     }
 
