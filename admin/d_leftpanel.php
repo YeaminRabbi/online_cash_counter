@@ -28,7 +28,7 @@
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <i class="fa fa-header" aria-hidden="true"></i>
+            <i class="fa fa-usd" aria-hidden="true"></i>
             <span class="menu-item-label">Sell</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
@@ -40,6 +40,14 @@
           
         </ul>
 
+
+        <a href="order_history.php" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="fa fa-first-order" aria-hidden="true"></i>
+            <span class="menu-item-label">Orders</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        
       </div><!-- sl-sideleft-menu -->
 
       <br>

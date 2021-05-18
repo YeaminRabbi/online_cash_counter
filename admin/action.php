@@ -1,5 +1,7 @@
 <?php
 	
+	session_start();
+
 	require 'db_config.php';
 	require 'calculation.php';
 
@@ -223,6 +225,83 @@
 
 	}
 
+
+
+
+	//// Order Placement ///
+
+	if(isset($_POST['action']) && isset($_POST['action'])== 'order'){
+		$name = $_POST['name'];
+		
+		$phone =$_POST['phone'];
+		$products =$_POST['products'];
+		$grand_total =$_POST['grand_total'];
+		$grand_total_costing=$_POST['grand_total_costing'];
+		$address =$_POST['address'];
+		$pmode = $_POST['pmode'];
+
+
+		$data= '';
+
+		$sql= $db->prepare("insert into orders (name,phone,address,pmode,products,amount_paid,amount_cost) values(?,?,?,?,?,?,?)");
+
+		$sql->bind_param("sssssss", $name,$phone,$address,$pmode,$products,$grand_total,$grand_total_costing);
+
+		$sql->execute();
+
+			$data .= '<div class="text-center">
+						<h1 class= "mt-2 text-danger">Thank You!</h1>
+						<h5 class= "text-success">Your Order Placed Successfully</h5>
+						<h6 class="bg-danger tact-light rounded p-2" style="color:white;">Items Purchased : '.$products.'</h6>
+
+						<h6>Name : '.$name.'</h6>
+						<h6>Phone : '.$phone.' </h6>
+						<h6>Total Amount Paid : '.number_format($grand_total).' </h6>
+						<h6>Payment Mode : '.$pmode.'</h6>
+
+						<a href="sell_products_list.php" class="btn btn-primary btn-block">Continue Shopping</a>	
+						<a href="index.php" class="btn btn-dark btn-block">Dashboard</a>
+					</div>';
+
+			echo $data;
+
+			after_order_placement($db);
+			
+			$sql= $db->prepare("delete from cart");
+			$sql->execute();
+
+		
+	}
+
+
+	function after_order_placement($db){
+		$query= "select * from cart";
+		$query = $db->prepare($query);
+		$query->execute();
+		$r=$query->get_result();
+
+		$product_cd_qty = array();
+
+		while ($rr = $r->fetch_assoc()) {
+
+			$arr=$rr['product_code']."%-/-%".$rr['quantity'];
+			array_push($product_cd_qty,$arr);
+		}
+		
+		$data=$product_cd_qty;
+
+		foreach ($data as $x) {
+			$split=explode("%-/-%", $x);
+
+			$product_code=$split[0];
+			$product_quantity=$split[1];
+			
+			$sql="UPDATE products set quantity=quantity - '".$product_quantity."' where id like '".$product_code."';";
+			$db->query($sql);		
+
+		}
+
+	}
 
 
 
