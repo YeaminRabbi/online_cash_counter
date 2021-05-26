@@ -21,7 +21,20 @@
     <div class="sl-pagebody"><!-- MAIN CONTENT -->
       <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Product Details</h6>
-            
+            <?php
+
+              if(isset($_GET['singledelete2']))
+              {
+            ?>
+
+             <div class="alert alert-danger alert-dismissible" style="height: 50px;">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+               Product Removed from Cart!
+            </div>
+            <?php 
+              }
+            ?>
+
             <?php
 
             if(isset($_GET['msg']))
@@ -117,6 +130,67 @@
             </table>
           </div><!-- table-wrapper -->
         </div>		
+
+
+
+         <div class="card pd-20 pd-sm-40" style="margin-top: 50px;">
+          <h6 class="card-body-title">Product Added to Cart</h6>
+
+            
+          <div class="table-wrapper">
+            <table id="myTable" class="table display responsive nowrap">
+              <thead>
+                <tr>
+                  <th class="wd-10p">SL</th>
+                  
+                  <th class="wd-10p">Product name</th>                  
+                  <th class="wd-10p">Selling </th>                  
+                  
+                  <th class="wd-20p">Choose Qty</th>
+                  <th class="wd-20p">Action</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                
+                <?php
+
+                    foreach ($products_in_CART as $key => $data) {
+                ?>  
+
+                  
+                    
+                  
+                    <tr>
+                    
+                        <td><?php echo $key+1; ?></td>
+                        
+                        <td><?php echo $data['product_name']; ?></td>
+                        <td>BDT. <?php echo $data['product_selling_price']; ?></td>
+                       
+                        <td><?php echo $data['quantity']; ?></td>
+                        <td>
+                          <a href="action.php?cart_singleproduct_remove2=<?= $data['id'] ?>" class="btn btn-danger">Delete</a>
+                        </td>
+                      
+                    </tr>
+
+                 
+                <?php
+                    }
+
+                ?>
+               
+                
+               
+              </tbody>
+            </table>
+          </div><!-- table-wrapper -->
+        </div>    
+
+
+
+
 
     </div><!-- sl-pagebody --><!-- END MAIN CONTENT -->
 

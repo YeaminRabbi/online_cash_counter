@@ -8,6 +8,21 @@
 	$total_orders=fetch_all_data_usingDB($db,"select COUNT(*) from orders");
 	$total_products=fetch_all_data_usingDB($db,"select COUNT(*) from products");
 	$total_amounts=fetch_all_data_usingDB($db,"SELECT SUM(amount_cost) as 'expense', SUM(amount_paid) as 'selling', SUM(amount_paid - amount_cost) as 'profit' FROM `orders`");
+	$products_in_CART = fetch_all_data_usingPDO($pdo,"select * from cart");
+
+
+	
+	$date = date('d-m-y');
+
+	$today_date = date('Y-m-d');
+
+	
+
+	$total_today=fetch_all_data_usingDB($db,"SELECT SUM(amount_paid - amount_cost) as 'profit_today' FROM `orders` where date(order_date_time) = '$today_date';");
+
+	$total_month=fetch_all_data_usingDB($db,"SELECT SUM(amount_paid - amount_cost) as 'profit_month' FROM `orders` where month(order_date_time) = month('$date');");
+
+	$total_customer=fetch_all_data_usingDB($db,"SELECT COUNT(*) FROM `orders` where date(order_date_time)='$today_date';");
 
 	function fetch_all_data_usingPDO($pdo,$sql)
 	{

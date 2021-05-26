@@ -95,6 +95,48 @@
           </div><!-- card -->
         </div><!-- col-3 -->
 
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-success">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Today's Profit</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,6,5,9,7,4,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><h5 class="mg-b-0 tx-white tx-lato tx-bold">BDT <?= number_format($total_today['profit_today']) ?></h5></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-dark">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Month's Profit</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,1,2,3,7,4,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><h5 class="mg-b-0 tx-white tx-lato tx-bold">BDT <?= number_format($total_month['profit_month']) ?></h5></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+
+
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-warning">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Today's Customer</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,7,6,5,9,4,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><h5 class="mg-b-0 tx-white tx-lato tx-bold"> <?= $total_customer['COUNT(*)'] ?></h5></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
 
 
         

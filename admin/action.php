@@ -192,6 +192,18 @@
 		header("Location: cart.php?singledelete=success");
 	}
 
+	//Removing a single product from cart table
+	if(isset($_GET['cart_singleproduct_remove2']))
+	{
+		$cart_id=$_GET['cart_singleproduct_remove2'];
+
+		$sql = "DELETE FROM cart WHERE id='$cart_id';";
+
+		$db->query($sql);
+
+		header("Location: sell_products_list.php?singledelete2=success");
+	}
+
 
 
 	//Removing a all products from cart table
