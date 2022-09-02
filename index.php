@@ -1,60 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php require 'd_header.php' ?>
 
-    
-    <title>Admin Signup</title>
+<!-- ########## START: LEFT PANEL ########## -->
+<?php require 'd_leftpanel.php' ?>
+<!-- ########## END: LEFT PANEL ########## -->
 
-    <!-- vendor css -->
-    <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="lib/Ionicons/css/ionicons.css" rel="stylesheet">
+<!-- ########## START: HEAD PANEL ########## -->
+<?php require 'd_headpanel.php' ?>
+<!-- ########## END: HEAD PANEL ########## -->
+
+<?php require 'calculation.php'; ?>
 
 
-    <!-- Starlight CSS -->
-    <link rel="stylesheet" href="css/starlight.css">
-  </head>
+  <!-- ########## START: MAIN PANEL ########## -->
+  <div class="sl-mainpanel">
+    <nav class="breadcrumb sl-breadcrumb">
+      <a class="breadcrumb-item" href="index.php">Online Cash Counter</a>
+      <span class="breadcrumb-item active">Dashboard</span>
+    </nav>
 
-  <body>
-
-    <div class="d-flex align-items-center justify-content-center bg-sl-primary ht-100v">
-
-      <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white">
-        <div class="signin-logo tx-center tx-24 tx-bold tx-inverse">Online Cash Counter</div>
-        <div class="tx-center mg-b-60">Login with valid Information</div>
-
-        <form action="action.php" method="POST">
-        	<div class="form-group">
-	          <input type="email" class="form-control" name="email" placeholder="Enter your email">
-	        </div><!-- form-group -->
-	        <div class="form-group">
-	          <input type="password" class="form-control" name="password" placeholder="Enter your password">
-	          
-	        </div><!-- form-group -->
+    <div class="sl-pagebody"><!-- MAIN CONTENT -->
+      <div class="row row-sm">
         
-        <button type="submit" name="btn-login_admin" class="btn btn-info btn-block">Sign In</button>
 
-        <?php
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-purple">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Total Products</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,7,5,6,5,3,9,3,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><?= $total_products['COUNT(*)'] ?></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
 
-            if(isset($_GET['msg']))
-            {
-          ?>
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-primary">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Total Expense</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">5,3,,7,3,5,2,9,6,5,9</span>
+              <h5 class="mg-b-0 tx-white tx-lato tx-bold">BDT <?= number_format($total_amounts['expense']) ?></h5>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
 
-           <p style="color: red;font-weight: 700;">Wrong Credentials!</p>
-          <?php 
-            }
-          ?>
-        </form>
+
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-danger">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Total Selling</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,6,5,9,7,4,5,2</span>
+              <h5 class="mg-b-0 tx-white tx-lato tx-bold">BDT <?= number_format($total_amounts['selling']) ?></h5>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+
+
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-sl-primary">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Total Orders</h6>
+                 <a  class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>     
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">5,3,9,6,5,9,7,3,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><?= $total_orders['COUNT(*)'] ?></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+      </div>
+
+
+       <div class="row row-sm" style="margin-top: 50px;">
+
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-warning">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Total Profit</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,6,5,9,7,4,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><h5 class="mg-b-0 tx-white tx-lato tx-bold">BDT <?= number_format($total_amounts['profit']) ?></h5></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+
+
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-info">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Month's Profit</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,1,2,3,7,4,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><h5 class="mg-b-0 tx-white tx-lato tx-bold">BDT <?= number_format($total_month['profit_month']) ?></h5></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-success">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Today's Profit</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,6,5,9,7,4,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><h5 class="mg-b-0 tx-white tx-lato tx-bold">BDT <?= number_format($total_today['profit_today']) ?></h5></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+
         
-      </div><!-- login-wrapper -->
-    </div><!-- d-flex -->
 
-    <script src="lib/jquery/jquery.js"></script>
-    <script src="lib/popper.js/popper.js"></script>
-    <script src="lib/bootstrap/bootstrap.js"></script>
 
+        <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+          <div class="card pd-20 bg-secondary">
+            <div class="d-flex justify-content-between align-items-center mg-b-10">
+              <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Today's Customer</h6>
+               <a class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>       
+            </div><!-- card-header -->
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="sparkline2">9,3,5,7,6,5,9,4,5,2</span>
+              <h3 class="mg-b-0 tx-white tx-lato tx-bold"><h5 class="mg-b-0 tx-white tx-lato tx-bold"> <?= $total_customer['COUNT(*)'] ?></h5></h3>
+            </div><!-- card-body -->
+                   
+          </div><!-- card -->
+        </div><!-- col-3 -->
+
+
+        
+
+        
+      </div>
+    </div><!-- sl-pagebody --><!-- END MAIN CONTENT -->
+
+
+  <?php require 'd_footer.php' ?>
+  </div><!-- sl-mainpanel -->
+  <!-- ########## END: MAIN PANEL ########## -->
+
+  <?php require 'd_javascript.php' ?>
   </body>
 </html>
-
